@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(realsense_ros_tutorial)
 
-## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++11)
-
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   pcl_ros
@@ -33,5 +30,8 @@ include_directories(
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
-add_executable(sample_code src/sample_code.cpp)
-target_link_libraries(sample_code ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${realsense2_LIBRARY})
+add_executable(publish_image src/publish_image.cpp)
+target_link_libraries(publish_image ${catkin_LIBRARIES} ${realsense2_LIBRARY})
+
+add_executable(publish_pointcloud src/publish_pointcloud.cpp)
+target_link_libraries(publish_pointcloud ${catkin_LIBRARIES} ${PCL_LIBRARIES} ${realsense2_LIBRARY})

@@ -1,5 +1,5 @@
 /**********************************************/
-/*sample_code.cpp                             */
+/*publish_image.cpp                           */
 /**********************************************/
 /*description                                 */
 /**********************************************/
@@ -13,7 +13,7 @@
 #include <librealsense2/rs.hpp>
 #include <cv-helpers.hpp>
 
-class RS_Image_Tutorial
+class Publish_Image
 {
     private:
         ros::NodeHandle nh;
@@ -45,7 +45,7 @@ class RS_Image_Tutorial
 
         void execute_program();
 
-        RS_Image_Tutorial()
+        Publish_Image()
         {
             pub_color_image = nh.advertise<sensor_msgs::Image>("rs_color_image", 10);
             pub_depth_image = nh.advertise<sensor_msgs::Image>("rs_depth_image", 10);
@@ -53,7 +53,7 @@ class RS_Image_Tutorial
 
             set_config();
         }
-        ~RS_Image_Tutorial()
+        ~Publish_Image()
         {
             pipeline_.stop();
             cv::destroyAllWindows();
@@ -62,14 +62,14 @@ class RS_Image_Tutorial
 
 };
 
-void RS_Image_Tutorial::set_config()
+void Publish_Image::set_config()
 {
     config_.enable_stream(RS2_STREAM_COLOR, 640, 480, RS2_FORMAT_BGR8, 30);
     config_.enable_stream(RS2_STREAM_DEPTH, 640, 480, RS2_FORMAT_Z16, 30);
     config_.enable_stream(RS2_STREAM_INFRARED, 640, 480, RS2_FORMAT_Y8, 30);
 }
 
-void RS_Image_Tutorial::execute_program()
+void Publish_Image::execute_program()
 {
     pipeline_.start(config_);
     std::cout << "start!!!" << std::endl;
@@ -107,10 +107,10 @@ void RS_Image_Tutorial::execute_program()
 
 int main(int argc, char** argv)
 {
-    ros::init(argc, argv, "sample_code");
-    RS_Image_Tutorial rs_image_tutorial;
+    ros::init(argc, argv, "publish_image");
+    Publish_Image publish_image;
 
-    rs_image_tutorial.execute_program();
+    publish_image.execute_program();
 
     std::cout << "program finish" << std::endl;
     return 0;
