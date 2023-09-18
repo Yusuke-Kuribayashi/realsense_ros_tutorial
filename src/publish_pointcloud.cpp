@@ -140,6 +140,6 @@ int main(int argc, char** argv)
     Publish_PC publish_pc;
     publish_pc.execute_program();
 
-    std::cout << "program finish" << std::endl;
+    std::cout << "program has finished" << std::endl;
     return 0;
 }
