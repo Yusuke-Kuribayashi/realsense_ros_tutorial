@@ -36,7 +36,7 @@ static cv::Mat frame_to_mat(const rs2::frame& f)
     {
         return Mat(Size(w, h), CV_8UC1, (void*)f.get_data(), Mat::AUTO_STEP);
     }
-    else if (f.get_profile().format() == RS2_FORMAT_Y16)
+    else if (f.get_profile().format() == RS2_FORMAT_Y16) //add
     {
         return Mat(Size(w, h), CV_16UC1, (void*)f.get_data(), Mat::AUTO_STEP);
     }
