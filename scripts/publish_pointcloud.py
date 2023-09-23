@@ -39,7 +39,7 @@ if __name__ == '__main__':
     pc_data = rs.pointcloud()
     
     # start streaming
-    profile = pipeline.start(config)
+    pipeline.start(config)
     print("start!!")
     
     try:
